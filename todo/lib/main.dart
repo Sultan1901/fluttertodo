@@ -51,7 +51,7 @@ class _TodoListState extends State<TodoList> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text('Todo list'),
+        title: new Text('My Todo'),
       ),
       body: ListView(
         padding: EdgeInsets.symmetric(vertical: 8.0),
@@ -64,7 +64,7 @@ class _TodoListState extends State<TodoList> {
       ),
       floatingActionButton: FloatingActionButton(
           onPressed: () => _displayDialog(),
-          tooltip: 'Add Item',
+          tooltip: 'Add',
           child: Icon(Icons.add)),
     );
   }
@@ -85,13 +85,12 @@ class _TodoListState extends State<TodoList> {
   Future<void> _displayDialog() async {
     return showDialog<void>(
       context: context,
-      barrierDismissible: false, // user must tap button!
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Add a new todo item'),
+          title: const Text('Add new todo'),
           content: TextField(
             controller: _textFieldController,
-            decoration: const InputDecoration(hintText: 'Type your new todo'),
           ),
           actions: <Widget>[
             TextButton(
