@@ -51,6 +51,7 @@ class _TodoListState extends State<TodoList> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
+        backgroundColor: Color.fromARGB(255, 0, 123, 254),
         title: new Text('My Todo'),
       ),
       body: ListView(
@@ -65,7 +66,7 @@ class _TodoListState extends State<TodoList> {
       floatingActionButton: FloatingActionButton(
           onPressed: () => _displayDialog(),
           tooltip: 'Add',
-          child: Icon(Icons.add)),
+          child: Icon(Icons.add_comment)),
     );
   }
 
@@ -94,7 +95,7 @@ class _TodoListState extends State<TodoList> {
           ),
           actions: <Widget>[
             TextButton(
-              child: const Text('Add'),
+              child: const Text('Add todo'),
               onPressed: () {
                 Navigator.of(context).pop();
                 _addTodoItem(_textFieldController.text);
