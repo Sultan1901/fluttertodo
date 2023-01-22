@@ -9,17 +9,6 @@ class ToDo {
     this.isDone = false,
   });
   static List<ToDo> todoList() {
-    return [
-      ToDo(id: '1', todoText: 'sleep 1', isDone: true),
-      ToDo(id: '2', todoText: 'sleep 2', isDone: true),
-      ToDo(
-        id: '3',
-        todoText: 'sleep 3',
-      ),
-      ToDo(
-        id: '4',
-        todoText: 'sleep 4',
-      ),
-    ];
+    return [];
   }
 }

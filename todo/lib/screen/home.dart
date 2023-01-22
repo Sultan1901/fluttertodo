@@ -26,10 +26,21 @@ class _HomeState extends State<Home> {
                   children: [
                     Container(
                       margin: EdgeInsets.only(top: 50, bottom: 20),
+                      child: Center(
+                        child: Text(
+                          "All Todos",
+                          style: TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(left: 10),
                       child: Text(
-                        "all TodoZ",
-                        style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.bold),
+                        '${todosList.length} ToDos',
+                        style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ),
                     for (ToDo todo in todosList)
@@ -43,38 +54,42 @@ class _HomeState extends State<Home> {
               )
             ]),
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Row(
-              children: [
-                Expanded(
-                    child: Container(
-                  margin: EdgeInsets.only(bottom: 20, right: 20, left: 20),
-                  padding: EdgeInsets.symmetric(vertical: 20, horizontal: 5),
-                  decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 161, 157, 157),
-                      boxShadow: const [
-                        BoxShadow(
-                            color: Color.fromARGB(255, 3, 16, 3),
-                            offset: Offset(0.0, 0.0),
-                            blurRadius: 10.0,
-                            spreadRadius: 0.0)
-                      ],
-                      borderRadius: BorderRadius.circular(10)),
-                  child: TextField(
-                      controller: _todoController,
-                      decoration: InputDecoration(
-                          hintText: 'add Todo', border: InputBorder.none)),
-                )),
-                Container(
-                  margin: EdgeInsets.only(bottom: 20, right: 20),
-                  child: BackButton(
-                    onPressed: () {
-                      _addToDoItem(_todoController.text);
-                    },
-                  ),
-                )
-              ],
+          Padding(
+            padding: const EdgeInsets.only(bottom: 45, left: 45, right: 7),
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Row(
+                children: [
+                  Expanded(
+                      child: Container(
+                    padding:
+                        EdgeInsets.only(left: 10, right: 10, top: 6, bottom: 6),
+                    decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 168, 164, 164),
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Color.fromARGB(255, 3, 16, 3),
+                              offset: Offset(0.0, 0.0),
+                              blurRadius: 10.0,
+                              spreadRadius: 0.0)
+                        ],
+                        borderRadius: BorderRadius.circular(10)),
+                    child: TextField(
+                        controller: _todoController,
+                        decoration: InputDecoration(
+                            hintText: 'add Todo', border: InputBorder.none)),
+                  )),
+                  Container(
+                    margin: EdgeInsets.only(bottom: 20, right: 20),
+                    child: IconButton(
+                      icon: Icon(Icons.add),
+                      onPressed: () {
+                        _addToDoItem(_todoController.text);
+                      },
+                    ),
+                  )
+                ],
+              ),
             ),
           )
         ],
@@ -96,10 +111,11 @@ class _HomeState extends State<Home> {
 
   void _addToDoItem(String toDo) {
     setState(() {
-      todosList.add(ToDo(
-        id: DateTime.now().millisecondsSinceEpoch.toString(),
-        todoText: toDo,
-      ));
+      if (!toDo.isEmpty)
+        todosList.add(ToDo(
+          id: DateTime.now().millisecondsSinceEpoch.toString(),
+          todoText: toDo,
+        ));
     });
     _todoController.clear();
   }
@@ -107,7 +123,7 @@ class _HomeState extends State<Home> {
   AppBar _buildAppBar() {
     return AppBar(
       backgroundColor: Colors.grey,
-      title: Text("My Awesome Todos"),
+      title: Text("My Todos"),
     );
   }
 }

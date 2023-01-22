@@ -11,8 +11,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: "My Awsome ToDos",
-        home: Home());
+        debugShowCheckedModeBanner: false, title: "My Awesome ToDos", home: Home());
   }
 }
